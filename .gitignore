@@ -35,3 +35,7 @@ __pycache__/
 
 # Node.js
 node_modules/
+# Python test/cache
+.pytest_cache/
+__pycache__/
+*.pyc
