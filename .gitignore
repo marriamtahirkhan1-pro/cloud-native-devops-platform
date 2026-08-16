@@ -1,0 +1,20 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Environment Variables
+.env
+
+# Logs
+*.log
+
+# AWS Keys
+*.pem
+
+# IDE
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
