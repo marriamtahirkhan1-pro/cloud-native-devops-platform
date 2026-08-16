@@ -2,19 +2,36 @@
 .terraform/
 *.tfstate
 *.tfstate.*
+*.tfvars
+!*.tfvars.example
 
-# Environment Variables
+# AWS credentials
+.aws/
+
+# Environment files
 .env
+.env.*
+!.env.example
+
+# Secrets
+secrets/
+*.pem
+*.key
 
 # Logs
 *.log
 
-# AWS Keys
-*.pem
-
 # IDE
 .vscode/
+.idea/
 
-# OS Files
+# OS files
 .DS_Store
 Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/

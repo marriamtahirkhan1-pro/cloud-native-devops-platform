@@ -1,18 +1,26 @@
 # Cloud Native DevOps Platform
 
-A production-style DevOps project demonstrating:
+A production-style cloud-native DevOps project demonstrating CI/CD, infrastructure as code, containerization, Kubernetes orchestration, security, and monitoring.
 
+## Technology Stack
+
+- Linux
 - Git & GitHub
-- Docker
 - Jenkins
-- SonarQube
+- Docker
+- Kubernetes
 - Terraform
-- AWS
-- Kubernetes (EKS)
 - Ansible
+- SonarQube
+- Trivy
 - Prometheus
 - Grafana
+- AWS
 
-## Status
+## Architecture
 
-Project under development.
+Developer → GitHub → Jenkins → SonarQube → Trivy → Docker → AWS ECR → Amazon EKS → Prometheus → Grafana
+
+## Project Status
+
+🚧 Under Development
