@@ -39,3 +39,6 @@ node_modules/
 .pytest_cache/
 __pycache__/
 *.pyc
+# Python virtual environment
+.venv/
+app/.venv/
