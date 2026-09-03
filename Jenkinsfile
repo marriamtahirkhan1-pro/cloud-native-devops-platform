@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         PATH = "/var/jenkins_home/.local/bin:${env.PATH}"
+        DATABASE_URL = "postgresql://taskuser:taskpassword@host.docker.internal:5432/taskdb"
     }
 
     stages {
@@ -23,6 +24,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 sh '''
+                    echo "Running tests with PostgreSQL..."
                     python3 -m pytest -v
                 '''
             }
