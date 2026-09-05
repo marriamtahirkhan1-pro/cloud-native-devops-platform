@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        sonarQube 'SonarScanner'
-    }
-
     environment {
         PATH = "/var/jenkins_home/.local/bin:${env.PATH}"
         DATABASE_URL = "postgresql://taskuser:taskpassword@host.docker.internal:5432/taskdb"
@@ -36,12 +32,16 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh '''
-                        sonar-scanner \
-                          -Dsonar.projectKey=cloud-native-devops-platform \
-                          -Dsonar.sources=app
-                    '''
+                script {
+                    def scannerHome = tool 'SonarScanner'
+
+                    withSonarQubeEnv('SonarQube') {
+                        sh """
+                            ${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=cloud-native-devops-platform \
+                            -Dsonar.sources=app
+                        """
+                    }
                 }
             }
         }
