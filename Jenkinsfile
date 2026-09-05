@@ -47,5 +47,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                sh '''
+                    docker build -t cloud-native-devops-platform:latest .
+                '''
+            }
+        }
     }
 }
