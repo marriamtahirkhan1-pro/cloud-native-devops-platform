@@ -36,13 +36,7 @@ pipeline {
                     def scannerHome = tool 'SonarScanner'
 
                     withSonarQubeEnv('SonarQube') {
-                        sh """
-                            ${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=cloud-native-devops-platform \
-                            -Dsonar.sources=app \
-                            -Dsonar.host.url="\$SONAR_HOST_URL" \
-                            -Dsonar.token="\$SONAR_AUTH_TOKEN"
-                        """
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
