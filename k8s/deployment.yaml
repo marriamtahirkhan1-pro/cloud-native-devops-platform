@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-native-devops-platform
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: cloud-native-devops-platform
+
+  template:
+    metadata:
+      labels:
+        app: cloud-native-devops-platform
+
+    spec:
+      containers:
+        - name: app
+          image: 792811916398.dkr.ecr.us-east-1.amazonaws.com/cloud-native-devops-platform:latest
+
+          ports:
+            - containerPort: 8000
+
+          env:
+            - name: DATABASE_URL
+              value: postgresql://taskuser:REMOVED_SECRET@postgres:5432/taskdb
