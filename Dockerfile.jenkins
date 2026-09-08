@@ -1,1 +1,25 @@
-vim 
+FROM jenkins/jenkins:lts-jdk21
+
+USER root
+
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    git \
+    docker.io \
+    unzip \
+    curl \
+    ca-certificates \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" \
+    && unzip /tmp/awscliv2.zip -d /tmp \
+    && /tmp/aws/install \
+    && rm -rf /tmp/aws /tmp/awscliv2.zip
+
+RUN curl -L "https://dl.k8s.io/release/v1.34.10/bin/linux/amd64/kubectl" \
+    -o /usr/local/bin/kubectl \
+    && chmod +x /usr/local/bin/kubectl
+
+USER jenkins

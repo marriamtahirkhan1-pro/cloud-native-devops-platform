@@ -42,3 +42,4 @@ __pycache__/
 # Python virtual environment
 .venv/
 app/.venv/
+k8s/secrets.yaml

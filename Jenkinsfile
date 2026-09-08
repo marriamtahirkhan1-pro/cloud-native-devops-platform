@@ -4,8 +4,6 @@ pipeline {
     environment {
         PATH = "/var/jenkins_home/.local/bin:${env.PATH}"
 
-        DATABASE_URL = "postgresql://taskuser:REMOVED_SECRET@host.docker.internal:5432/taskdb"
-
         AWS_REGION = "us-east-1"
         AWS_ACCOUNT_ID = "792811916398"
 
@@ -36,10 +34,17 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh '''
-                    echo "Running tests with PostgreSQL..."
-                    python3 -m pytest -v
-                '''
+                withCredentials([
+                    string(
+                        credentialsId: 'postgres-database-url',
+                        variable: 'DATABASE_URL'
+                    )
+                ]) {
+                    sh '''
+                        echo "Running tests with PostgreSQL..."
+                        python3 -m pytest -v
+                    '''
+                }
             }
         }
 
